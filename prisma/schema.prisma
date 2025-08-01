@@ -1,0 +1,109 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Funcionario {
+  id             String   @id @default(uuid())
+  nome           String
+  cpf            Int      @unique
+  dataNascimento DateTime
+  telefone       String   @unique
+  email          String   @unique
+  endereco       String
+  login          String   @unique
+  password       String
+  cargo          String
+  crmv           String?  @unique
+  createdAt      DateTime @default(now())
+  updateAt       DateTime @updatedAt
+
+  @@map("funcionario")
+}
+
+model Tutor {
+  id             String   @id @default(uuid())
+  createdAt      DateTime @default(now())
+  updateAt       DateTime @updatedAt
+  nome           String
+  cpf            String   @unique
+  dataNascimento DateTime
+  telefone       String   @unique
+  email          String?  @unique
+  endereco       String
+
+  @@map("tutor")
+}
+
+model Pet {
+  id                  String   @id @default(uuid())
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  nome                String
+  especie             String
+  raca                String
+  identificador       Boolean
+  tipoIdentificador   String?
+  codigoIdentificador String?
+  vacinas             Json
+
+  @@map("pet")
+}
+
+model Atendimento {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  resumo    String
+  descricao String
+  tipo      String
+
+  @@map("atendimento")
+}
+
+model Agendamento {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  when      DateTime
+  resumo    String
+  descricao String
+  status    String
+
+  @@map("agendamento")
+}
+
+model Venda {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  produtos   Json
+  total      Float
+  desconto   Float
+  valorFinal Float
+
+  @@map("vendas")
+}
+
+model Produto {
+  id            String   @id @default(uuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  nome          String
+  descricao     String
+  valorUnitario Float
+  tipo          Boolean
+
+  @@map("produtos")
+}
