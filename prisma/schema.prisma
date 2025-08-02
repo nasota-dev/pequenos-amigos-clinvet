@@ -15,95 +15,95 @@ datasource db {
 }
 
 model Collaborator {
-  id             String   @id @default(uuid())
-  name           String
-  cpf            Int      @unique
+  id        String   @id @default(uuid())
+  name      String
+  cpf       Int      @unique
   dateBirth DateTime
-  telephone       String   @unique
-  email          String   @unique
-  address       String
-  login          String   @unique
-  password       String
-  role          String
-  crmv           String?  @unique
-  createdAt      DateTime @default(now())
-  updateAt       DateTime @updatedAt
+  telephone String   @unique
+  email     String   @unique
+  address   String
+  login     String   @unique
+  password  String
+  role      String
+  crmv      String?  @unique
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
 
   @@map("collaborator")
 }
 
 model Tutor {
-  id             String   @id @default(uuid())
-  createdAt      DateTime @default(now())
-  updateAt       DateTime @updatedAt
-  name           String
-  cpf            String   @unique
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+  name      String
+  cpf       String   @unique
   dateBirth DateTime
-  telephone       String   @unique
-  email          String?  @unique
-  address       String
+  telephone String   @unique
+  email     String?  @unique
+  address   String
 
   @@map("tutor")
 }
 
 model Pet {
-  id                  String   @id @default(uuid())
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
-  name                String
-  species             String
-  race             String
-  identifier       Boolean
-  typeIdentifier   String?
+  id             String   @id @default(uuid())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  name           String
+  species        String
+  race           String
+  identifier     Boolean
+  typeIdentifier String?
   codeIdentifier String?
-  vaccines             Json
+  vaccines       Json
 
   @@map("pet")
 }
 
 model Service {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  resume    String
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  resume      String
   description String
-  type      String
+  type        String
 
   @@map("service")
 }
 
 model Scheduling {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  when      DateTime
-  resume    String
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  when        DateTime
+  resume      String
   description String
-  status    String
+  status      String
 
   @@map("scheduling")
 }
 
-model Venda {
+model Sell {
   id         String   @id @default(uuid())
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  produtos   Json
+  products   Json
   total      Float
-  desconto   Float
-  valorFinal Float
+  discount   Float
+  finalValue Float
 
-  @@map("vendas")
+  @@map("sell")
 }
 
-model Produto {
-  id            String   @id @default(uuid())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  nome          String
-  descricao     String
-  valorUnitario Float
-  tipo          Boolean
+model Product {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  description String
+  unitValue   Float
+  type        Boolean
 
-  @@map("produtos")
+  @@map("products")
 }
