@@ -14,34 +14,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Funcionario {
+model Collaborator {
   id             String   @id @default(uuid())
-  nome           String
+  name           String
   cpf            Int      @unique
-  dataNascimento DateTime
-  telefone       String   @unique
+  dateBirth DateTime
+  telephone       String   @unique
   email          String   @unique
-  endereco       String
+  address       String
   login          String   @unique
   password       String
-  cargo          String
+  role          String
   crmv           String?  @unique
   createdAt      DateTime @default(now())
   updateAt       DateTime @updatedAt
 
-  @@map("funcionario")
+  @@map("collaborator")
 }
 
 model Tutor {
   id             String   @id @default(uuid())
   createdAt      DateTime @default(now())
   updateAt       DateTime @updatedAt
-  nome           String
+  name           String
   cpf            String   @unique
-  dataNascimento DateTime
-  telefone       String   @unique
+  dateBirth DateTime
+  telephone       String   @unique
   email          String?  @unique
-  endereco       String
+  address       String
 
   @@map("tutor")
 }
@@ -50,13 +50,13 @@ model Pet {
   id                  String   @id @default(uuid())
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
-  nome                String
-  especie             String
-  raca                String
-  identificador       Boolean
-  tipoIdentificador   String?
-  codigoIdentificador String?
-  vacinas             Json
+  name                String
+  species             String
+  race             String
+  identifier       Boolean
+  typeIdentifier   String?
+  codeIdentifier String?
+  vaccines             Json
 
   @@map("pet")
 }
@@ -65,9 +65,9 @@ model Atendimento {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  resumo    String
-  descricao String
-  tipo      String
+  resume    String
+  description String
+  type      String
 
   @@map("atendimento")
 }
