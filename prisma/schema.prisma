@@ -15,19 +15,22 @@ datasource db {
 }
 
 model Collaborator {
-  id        String   @id @default(uuid())
-  name      String
-  cpf       Int      @unique
-  dateBirth DateTime
-  telephone String   @unique
-  email     String   @unique
-  address   String
-  login     String   @unique
-  password  String
-  role      String
-  crmv      String?  @unique
-  createdAt DateTime @default(now())
-  updateAt  DateTime @updatedAt
+  id         String       @id @default(uuid())
+  name       String
+  cpf        Int          @unique
+  dateBirth  DateTime
+  telephone  String       @unique
+  email      String       @unique
+  address    String
+  login      String       @unique
+  password   String
+  role       String
+  crmv       String?      @unique
+  createdAt  DateTime     @default(now())
+  updateAt   DateTime     @updatedAt
+  services   Service[]
+  scheduling Scheduling[]
+  Sell       Sell?
 
   @@map("collaborator")
 }
@@ -42,6 +45,7 @@ model Tutor {
   telephone String   @unique
   email     String?  @unique
   address   String
+  pets      Pet[]
 
   @@map("tutor")
 }
@@ -57,41 +61,50 @@ model Pet {
   typeIdentifier String?
   codeIdentifier String?
   vaccines       Json
+  tutorId        String   @unique
+  tutor          Tutor    @relation(fields: [tutorId], references: [id])
 
   @@map("pet")
 }
 
 model Service {
-  id          String   @id @default(uuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  resume      String
-  description String
-  type        String
+  id             String       @id @default(uuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  resume         String
+  description    String
+  type           String
+  collaboratorId String       @unique
+  collaborator   Collaborator @relation(fields: [collaboratorId], references: [id])
 
   @@map("service")
 }
 
 model Scheduling {
-  id          String   @id @default(uuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  when        DateTime
-  resume      String
-  description String
-  status      String
+  id             String       @id @default(uuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  when           DateTime
+  resume         String
+  description    String
+  status         String
+  services       Json
+  collaboratorId String       @unique
+  collaborator   Collaborator @relation(fields: [collaboratorId], references: [id])
 
   @@map("scheduling")
 }
 
 model Sell {
-  id         String   @id @default(uuid())
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  products   Json
-  total      Float
-  discount   Float
-  finalValue Float
+  id             String       @id @default(uuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  products       Json
+  total          Float
+  discount       Float
+  finalValue     Float
+  collaboratorId String       @unique
+  collaborator   Collaborator @relation(fields: [collaboratorId], references: [id])
 
   @@map("sell")
 }
