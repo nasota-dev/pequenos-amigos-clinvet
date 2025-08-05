@@ -30,7 +30,7 @@ model Collaborator {
   updateAt   DateTime     @updatedAt
   services   Service[]
   scheduling Scheduling[]
-  Sell       Sell?
+  Sell       Sell[]
 
   @@map("collaborator")
 }
