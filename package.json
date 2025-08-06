@@ -11,13 +11,15 @@
   "license": "ISC",
   "packageManager": "pnpm@10.14.0",
   "dependencies": {
-    "@fastify/cors": "^11.1.0",
     "@prisma/client": "^6.13.0",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.1",
-    "fastify": "^5.4.0",
+    "express": "^5.1.0",
     "zod": "^4.0.14"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
     "@types/node": "^24.1.0",
     "prisma": "^6.13.0",
     "tsx": "^4.20.3",
